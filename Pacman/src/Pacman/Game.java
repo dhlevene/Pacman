@@ -1,6 +1,7 @@
 package Pacman;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -24,6 +25,7 @@ private Timer timer;
 private int direction;
 private boolean canmove;
 private int score = 0;
+Font myFont = new Font("Serif", Font.BOLD, 25);
 
 int x1;
 int y1;
@@ -112,7 +114,10 @@ int[][] a={
 				}         
 			}
                 }
-                System.out.println(score);
+                g.setFont(myFont);
+                g.setColor(Color.yellow);
+                g.drawString("Score: " + score, 20, 35);
+                System.out.println(sphere1.Getx());
 		}
         
                 public int countSpheres()
@@ -180,7 +185,13 @@ int[][] a={
 		}
 class TAdapter extends KeyAdapter{
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode()== KeyEvent.VK_A)
+            //if(sphere1.Getx() > 0 & sphere1.Getx() < 725)
+            //{
+                if(sphere1.Getx() == 0 && e.getKeyCode()== KeyEvent.VK_A)
+                        sphere1.Setx(725);
+                else if(sphere1.Getx() == 725 && e.getKeyCode() == KeyEvent.VK_D)
+                        sphere1.Setx(-725);
+                else if (e.getKeyCode()== KeyEvent.VK_A)
 			sphere1.Setx(-25);
 		else if (e.getKeyCode() == KeyEvent.VK_D)
 			sphere1.Setx(25);
@@ -188,6 +199,8 @@ class TAdapter extends KeyAdapter{
 			sphere1.Sety(-25);
 		else if (e.getKeyCode() == KeyEvent.VK_S)
 			sphere1.Sety(25);
+            //}
+            
 		wallcollision();
 		dotcollision();
 		ghostcollision();

@@ -38,11 +38,19 @@ public class DeathSphere {
 	}
 	public void Setx(int a){
 		x += a;
-		if (a < 0){
+		if(a == -725){
+                    image = imageright;
+                    facing = 4;
+                }
+                else if(a == 725){
+                    image = imageleft;
+                    facing = 2;
+                }
+                else if (a < 0 && a != -725){
 			image = imageleft;
 			facing = 2;
 		}
-		if (a > 0){
+                else if (a > 0){
 			image = imageright;
 			facing = 4;
 	}
@@ -68,4 +76,8 @@ public class DeathSphere {
 	public int getFacing(){
 		return facing;
 	}
+        
+        public void setFacing(int a){
+            facing = a;
+        }
 }
