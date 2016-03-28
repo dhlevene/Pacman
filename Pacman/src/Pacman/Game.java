@@ -23,6 +23,7 @@ private Ghost ghost4;
 private Timer timer;
 private int direction;
 private boolean canmove;
+private int score = 0;
 
 int x1;
 int y1;
@@ -108,11 +109,22 @@ int[][] a={
 				else if (a[x][y] == 3){
 					g.setColor(Color.YELLOW);
 					g.fillOval((y*25 +3), (x*25 + 3), 20, 20);
-				}
+				}         
 			}
-			
-			}
+                }
+                System.out.println(score);
 		}
+        
+                public int countSpheres()
+                {
+                    int sum = 0;
+                    for(int x = 0; x < 33; x++)
+                        for(int y = 0; y < 30; y++)
+                            if(a[x][y] == 2)
+                                sum++;
+                    return sum;
+                }
+                
 		// facing: 1 = UP, 2 = LEFT, 3 = DOWN, 4 = RIGHT
 		public void wallcollision() {
 			for(int x=0;x<33;x++){
@@ -140,12 +152,20 @@ int[][] a={
 					if(a[x][y] == 2){
 						Rectangle rect2 = new Rectangle(y*25,x*25, 25, 25);
 						if (sphere1.getBounds().intersects(rect2))
-							a[x][y] = 0;
+                                                {
+                                                    a[x][y] = 0;
+                                                    score += 10;
+                                                }
+                                                if(countSpheres() == 0)
+                                                    System.exit(0);
 					}
 					else if(a[x][y] ==3){
 						Rectangle rect3 = new Rectangle(y*25,x*25, 25, 25);
 						if (sphere1.getBounds().intersects (rect3))
-							a[x][y] = 0;
+                                                {
+                                                        a[x][y] = 0;
+                                                        score += 25;
+                                                }
 					}
 					}
 				}
