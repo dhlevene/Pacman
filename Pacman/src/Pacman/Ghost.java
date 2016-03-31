@@ -14,15 +14,19 @@ public class Ghost {
 	private Image image;
 	private Image imageleft;
 	private Image imageright;
+        private Image imageblue;
 	private int facing;
+        private boolean isBlue = false;
 
 	public Ghost (int x, int y){
 		this.x = x;
 		this.y = y;
 		ImageIcon i = new ImageIcon(this.getClass().getResource("Ghost1.gif"));
 		ImageIcon i2 = new ImageIcon(this.getClass().getResource("Ghost2.gif"));
+                ImageIcon i3 = new ImageIcon(this.getClass().getResource("GhostBlu.gif"));
 		imageleft = i.getImage();
 		imageright = i2.getImage();
+                imageblue = i3.getImage();
 		image = imageleft;
 	}
 	public int Getx(){
@@ -34,6 +38,7 @@ public class Ghost {
 	public void Setx(int a){
 		a+=0;
 		x += a;
+            if(isBlue == false){
 		if (a < 0){
 			image = imageleft;
 			facing = 2;
@@ -41,7 +46,8 @@ public class Ghost {
 		if (a > 0){
 			image = imageright;
 			facing = 4;
-	}
+                }
+            }
 	}
 	public void Sety(int a){
 			a+=0;
@@ -56,6 +62,11 @@ public class Ghost {
 	public int getFacing(){
 		return facing;
 	}
+        
+        public void isBlue() throws InterruptedException{
+                isBlue = true;
+                image = imageblue;
+        }
 	
 }
 

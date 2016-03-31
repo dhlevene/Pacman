@@ -194,6 +194,8 @@ public void dotcollision(){
                     {
                         a[x][y] = 0;
                         score += 25;
+                        for(Ghost ghost : ghosts)
+                            ghost.isBlue();
                     }
             }
         }
@@ -206,6 +208,7 @@ public void ghostcollision(){
         if(sphere1.getBounds().intersects(ghost.getBounds())){
             numLives--;
             if(numLives == 0){
+                choice = JOptionPane.showConfirmDialog(null, "Game Over! Your score was: " + score + " Want to play again?");
                 if(choice == JOptionPane.NO_OPTION)
                     System.exit(0);
                 else
@@ -314,7 +317,7 @@ public void ghostmove(){
     }
 
 public void actionPerformed(ActionEvent arg0){
-    ghostmove();
+    //ghostmove();
     repaint();
 }
 }
